@@ -1,33 +1,37 @@
-from homeassistant.components.sensor import SensorEntity
 import feedparser
+from homeassistant.helpers.entity import Entity
+from .const import DOMAIN, DEFAULT_NAME, FEED_URL
 
-DOMAIN = "beredskabsvisning"
+async def async_setup_platform(hass, config, async_add_entities, discovery_info=None):
+    async_add_entities([OdinSensor()], True)
 
-async def async_setup_entry(hass, entry, async_add_entities):
-    beredskabs_id = entry.options.get("beredskabs_id", "1212")
-    station = entry.options.get("station", "aarhus")
-    dage_tilbage = entry.options.get("dage_tilbage", 1)
+class OdinSensor(Entity):
+    def __init__(self):
+        self._state = None
+        self._attr_name = DEFAULT_NAME
+        self._attr_unique_id = "sensor.112_odin"
+        self._latest_title = None
 
-    feed_url = f"http://www.odin.dk/RSS/RSS.aspx?beredskabsID={beredskabs_id}"
-    async_add_entities([OdinSensor(feed_url, station, dage_tilbage)], True)
+    @property
+    def name(self):
+        return self._attr_name
 
-class OdinSensor(SensorEntity):
-    def __init__(self, feed_url, station, dage_tilbage):
-        self._attr_name = f"112 ODIN - {station}"
-        self._feed_url = feed_url
-        self._station = station
-        self._dage_tilbage = dage_tilbage
-        self._attr_native_value = None
-        self._attr_extra_state_attributes = {}
+    @property
+    def unique_id(self):
+        return self._attr_unique_id
 
-    def update(self):
-        feed = feedparser.parse(self._feed_url)
-        for entry in feed.entries:
-            if self._station.lower() in entry.summary.lower():
-                self._attr_native_value = entry.title
-                self._attr_extra_state_attributes = {
-                    "published": entry.published,
-                    "summary": entry.summary,
-                    "link": entry.link
-                }
-                break
+    @property
+    def state(self):
+        return self._state
+
+    @property
+    def extra_state_attributes(self):
+        return {"latest_title": self._latest_title}
+
+    async def async_update(self):
+        feed = feedparser.parse(FEED_URL)
+        if feed.entries:
+            self._latest_title = feed.entries[0].title
+            self._state = "🆕 Beredskabsopslag modtaget"
+        else:
+            self._state = "Ingen nye opslag"
