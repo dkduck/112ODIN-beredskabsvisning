@@ -1,0 +1,15 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "description": "Konfigurer 112ODIN visning",
+        "data": {
+          "beredskabs_id": "Beredskabs ID",
+          "stationer": "Stationer (kommasepareret)",
+          "dage": "Antal dage",
+          "overskrift": "Overskrift"
+        }
+      }
+    }
+  }
+}

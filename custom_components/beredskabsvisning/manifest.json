@@ -1,0 +1,8 @@
+{
+  "domain": "beredskabsvisning",
+  "name": "112ODIN Beredskabsvisning",
+  "version": "1.0.0",
+  "requirements": [],
+  "codeowners": ["@ditgithubnavn"],
+  "documentation": "https://github.com/ditgithubnavn/homeassistant-beredskabsvisning"
+}

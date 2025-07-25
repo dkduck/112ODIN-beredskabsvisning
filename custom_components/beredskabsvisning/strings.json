@@ -1,0 +1,23 @@
+{
+  "title": "112ODIN Beredskabsvisning",
+  "description": "Vis hændelser fra beredskaber baseret på ID, stationer og valgt periode",
+  "config": {
+    "step": {
+      "user": {
+        "title": "Konfiguration",
+        "description": "Indtast oplysninger for filtrering",
+        "data": {
+          "beredskabs_id": "Beredskabs ID",
+          "stationer": "Station(er) - kommasepareret",
+          "dage": "Antal dage",
+          "overskrift": "Overskrift"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Kan ikke oprette forbindelse",
+      "invalid_auth": "Ugyldig autorisation",
+      "unknown": "Ukendt fejl"
+    }
+  }
+}
