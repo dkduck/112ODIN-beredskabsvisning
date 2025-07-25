@@ -4,7 +4,7 @@
   "domain": "beredskabsvisning",
   "country": "dk",
   "homeassistant": "2024.0.0",
-  "codeowners": ["@DIT_GITHUB_BRUGERNAVN"],
+  "codeowners": ["@dkduck"],
   "description": "Integration der viser hændelser fra beredskab baseret på ID, stationer og valgt periode",
-  "documentation": "https://github.com/DIT_GITHUB_BRUGERNAVN/homeassistant-beredskabsvisning"
+  "documentation": "https://github.com/dkduck/homeassistant-beredskabsvisning"
 }
