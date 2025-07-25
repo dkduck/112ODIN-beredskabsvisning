@@ -1,8 +1,9 @@
 {
   "domain": "beredskabsvisning",
   "name": "112ODIN Beredskabsvisning",
-  "version": "1.0.2",
-  "requirements": [],
+  "version": "1.0.4",
+  "requirements": ["feedparser"],
+  "dependencies": [],
   "codeowners": ["@dkduck"],
-  "documentation": "https://github.com/dkduck/homeassistant-beredskabsvisning"
+  "config_flow": true
 }
